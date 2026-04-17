@@ -67,35 +67,6 @@ React updates UI
 
 ---
 
-## Getting Started
-
-### 1 — Backend
-
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate      # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
-```
-
-Interactive API docs → http://localhost:8000/docs
-
-### 2 — Frontend
-
-```bash
-cd frontend
-npm install
-npm start
-```
-
-App → http://localhost:3000
-
-> The React app calls `http://localhost:8000` by default.  
-> Override with `REACT_APP_API_URL=https://your-backend.com npm start`.
-
----
-
 ## API Reference
 
 ### `POST /move`
