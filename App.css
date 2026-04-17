@@ -1,0 +1,186 @@
+/* App.css — Global styles for the Tic-Tac-Toe AI frontend */
+
+/* ── Google Font import ─────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap');
+
+/* ── Reset & base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: #0f0e17;
+  color: #fffffe;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── App shell ──────────────────────────────────────────────── */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 1rem 3rem;
+  width: 100%;
+  max-width: 440px;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.app__header {
+  text-align: center;
+}
+
+.app__title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.8rem, 10vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.app__title-x   { color: #6366f1; }
+.app__title-sep { color: #444464; font-size: 70%; }
+.app__title-o   { color: #e11d48; }
+
+.app__subtitle {
+  font-size: 0.8rem;
+  color: #5a5a7a;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-top: 0.35rem;
+}
+
+/* ── Scoreboard ─────────────────────────────────────────────── */
+.scoreboard {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.scoreboard__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0.75rem 0;
+  border-radius: 10px;
+  border: 1.5px solid #1e1e36;
+  background: #14132a;
+}
+
+.scoreboard__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5a5a7a;
+}
+
+.scoreboard__value {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.scoreboard__item--x   .scoreboard__value { color: #6366f1; }
+.scoreboard__item--o   .scoreboard__value { color: #e11d48; }
+.scoreboard__item--draw .scoreboard__value { color: #a0a0c0; }
+
+/* ── Status banner ───────────────────────────────────────────── */
+.status-banner {
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.55rem 1.5rem;
+  border-radius: 999px;
+  border: 1.5px solid #1e1e36;
+  background: #14132a;
+  color: #a0a0c0;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  min-width: 220px;
+  text-align: center;
+}
+
+.status-banner--thinking {
+  color: #a0a0c0;
+  animation: pulse-text 1s ease-in-out infinite;
+}
+
+.status-banner--win {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: #6366f1;
+  color: #a5b4fc;
+}
+
+.status-banner--loss {
+  background: rgba(225, 29, 72, 0.1);
+  border-color: #e11d48;
+  color: #fda4af;
+}
+
+.status-banner--draw {
+  background: rgba(160, 160, 192, 0.08);
+  border-color: #4a4a6a;
+  color: #c0c0d8;
+}
+
+/* ── Board wrapper ───────────────────────────────────────────── */
+.app__board-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Error message ───────────────────────────────────────────── */
+.app__error {
+  font-size: 0.85rem;
+  color: #fda4af;
+  background: rgba(225, 29, 72, 0.1);
+  border: 1px solid rgba(225, 29, 72, 0.3);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  max-width: 100%;
+}
+
+/* ── New Game button ─────────────────────────────────────────── */
+.btn-new-game {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.65rem 2.2rem;
+  border-radius: 999px;
+  border: 1.5px solid #6366f1;
+  background: transparent;
+  color: #a5b4fc;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, transform 0.1s;
+  letter-spacing: 0.03em;
+}
+
+.btn-new-game:hover:not(:disabled) {
+  background: rgba(99, 102, 241, 0.15);
+  color: #c7d2fe;
+}
+
+.btn-new-game:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.btn-new-game:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── Keyframes ───────────────────────────────────────────────── */
+@keyframes pulse-text {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 400px) {
+  .app { padding: 1.5rem 0.75rem 2rem; gap: 1.2rem; }
+}

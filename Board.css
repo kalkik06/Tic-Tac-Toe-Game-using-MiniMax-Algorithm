@@ -1,0 +1,88 @@
+/* Board.css — 3×3 grid styles */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 1 / 1;
+  border: 2px solid #1a1a2e;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ── Cell base ──────────────────────────────────────────────── */
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-right: 1.5px solid #1a1a2e;
+  border-bottom: 1.5px solid #1a1a2e;
+  cursor: default;
+  transition: background 0.15s ease;
+  padding: 0;
+  outline: none;
+  position: relative;
+}
+
+.cell:nth-child(3n)   { border-right: none; }
+.cell:nth-child(n+7)  { border-bottom: none; }
+
+/* ── Hover on empty playable cells ─────────────────────────── */
+.cell--playable {
+  cursor: pointer;
+}
+.cell--playable:hover {
+  background: rgba(99, 102, 241, 0.07);
+}
+
+/* ── Symbol text ────────────────────────────────────────────── */
+.cell__symbol {
+  font-family: 'Syne', 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1;
+  user-select: none;
+  animation: pop-in 0.18s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.cell--x .cell__symbol { color: #6366f1; }
+.cell--o .cell__symbol { color: #e11d48; }
+
+/* ── Winner highlight ───────────────────────────────────────── */
+.cell--winner {
+  background: rgba(99, 102, 241, 0.13);
+}
+.cell--winner .cell__symbol {
+  color: #4f46e5;
+  animation: winner-glow 0.6s ease forwards;
+}
+
+/* ── AI last-move pulse ─────────────────────────────────────── */
+.cell--ai-last::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(225, 29, 72, 0.08);
+  animation: pulse-fade 0.5s ease-out forwards;
+}
+
+/* ── Keyframes ──────────────────────────────────────────────── */
+@keyframes pop-in {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes winner-glow {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.15); }
+  100% { transform: scale(1.08); }
+}
+
+@keyframes pulse-fade {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
